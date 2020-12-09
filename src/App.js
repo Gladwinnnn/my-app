@@ -1,5 +1,4 @@
 import React from "react";
-
 import TodoItem from "./TodoItem";
 import todosData from "./todosData";
 
@@ -18,51 +17,77 @@ import todosData from "./todosData";
 //     )
 // }
 
-// class App extends React.Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             status: "Completed"
-//         };
-//     }
-
-//     render() {
-//         const todoComponent = todosData.map(list => 
-//             <TodoItem 
-//                 key={list.id}
-//                 todoItem={list}
-//             />
-//         );
-    
-//         return (
-//             <div className="todo-list">
-//                 {todoComponent}
-//             </div>
-//         )
-//     }
-// }
-
 class App extends React.Component {
     constructor() {
-        super()
+        super();
         this.state = {
-            isLoggedIn: true
-        }
+            todos:todosData
+        }  
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(id) {
+        this.setState((prevState) => {
+            const updatedTodos = prevState.todos.map(todo => {
+                if (todo.id === id) {
+                    todo.completed = !todo.completed
+                }
+                return todo;
+            })
+            return {
+                todos: updatedTodos
+            }
+        });
     }
 
     render() {
-        let display;
-        if (this.state.isLoggedIn == true){
-            display = "in";
-        } else{
-            display = "out";
-        }
+        const todoComponent = this.state.todos.map(list => 
+            <TodoItem 
+                key={list.id}
+                todoItem={list}
+                handleChange={this.handleChange}
+            />
+        );
+    
         return (
-            <div>
-                <h1>You are currently logged {display}</h1>
+            <div className="todo-list">
+                {todoComponent}
             </div>
         )
     }
 }
+
+// class App extends React.Component {
+//     constructor() {
+//         super()
+//         this.state = {
+//             count: 0
+//         }
+//         this.handleClick = this.handleClick.bind(this)
+//         this.resetClick = this.resetClick.bind(this)
+//     }
+
+//     handleClick(){
+//         this.setState((prevState) => {
+//             return {
+//                 count: prevState.count + 1
+//             }
+//         });
+//     }
+
+//     resetClick(){
+//         this.setState({ count: 0});
+//     }
+
+//     render() {
+//         return (
+//             <div>
+//                 <h1>{this.state.count}</h1>
+//                 <button onClick={this.handleClick}>Change!</button>
+//                 <button onClick={this.resetClick}>Reset</button>
+//             </div>
+//         )
+//     }
+// }
 
 export default App
