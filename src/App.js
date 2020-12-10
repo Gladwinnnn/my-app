@@ -58,6 +58,35 @@ class App extends React.Component {
 }
 
 // class App extends React.Component {
+//     constructor (){
+//         super()
+//         this.state = {
+//             isLoggedIn: false
+//         }
+//         this.handleClick = this.handleClick.bind(this)
+//     }
+
+//     handleClick() {
+//         this.setState((prevState) => {
+//             return {
+//                 isLoggedIn: !prevState.isLoggedIn
+//             }
+//         })
+//     }
+
+//     render() {
+//         let buttonDisplay = this.state.isLoggedIn ? "login": "logout";
+//         let textDisplay = this.state.isLoggedIn ? "you are logged out": "you are logged in";
+//         return (
+//             <div>
+//                 <button onClick={this.handleClick}>{buttonDisplay}</button>
+//                 <h1>{textDisplay}</h1>
+//             </div>
+//         )
+//     }
+// }
+
+// class App extends React.Component {
 //     constructor() {
 //         super()
 //         this.state = {
